@@ -1,8 +1,10 @@
 daemonize
 show-failed-attempts
 clock
-effect-blur=5x5
-color=1f1d2e80
+effect-blur=8x8
+color=1f1d2e
+fade-in="0.1"
+ignore-empty-password
 font="Inter"
 indicator
 indicator-radius=200
@@ -31,5 +33,3 @@ grace=2
 grace-no-mouse
 grace-no-touch
 datestr="%d.%m"
-fade-in="0.1"
-ignore-empty-password

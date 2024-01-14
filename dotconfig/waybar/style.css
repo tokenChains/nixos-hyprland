@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Cartograph CF Nerd Font, monospace;
+    font-family: 'Fira Code', 'Symbols Nerd Font Mono';
     font-weight: bold;
     font-size: 14px;
     min-height: 0;
@@ -54,9 +54,9 @@ tooltip {
 #custom-weather,
 #window,
 #clock,
+#network,
 #battery,
 #pulseaudio,
-#network,
 #workspaces,
 #tray,
 #backlight {
@@ -93,6 +93,7 @@ tooltip {
     border-right: 0px;
 }
 
+#network,
 #custom-updates {
     color: #f5c2e7;
     border-radius: 10px 0px 0px 10px;
@@ -113,11 +114,11 @@ tooltip {
     border-right: 0px;
 }
 
-#network {
+/* #network {
     color: #f9e2af;
     border-left: 0px;
     border-right: 0px;
-}
+} */
 
 #pulseaudio {
     color: #89b4fa;
