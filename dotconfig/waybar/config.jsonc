@@ -104,11 +104,11 @@
         "interval": 60,
         "format": "{ifname}",
         "format-wifi": "{signalStrength}% ",
-        "format-ethernet": "{ifname} ",
-        "format-disconnected": "", //An empty format will hide the module.
+        "format-ethernet": "",
+        "format-disconnected": "\uead0",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-ethernet": "{ifname} - {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50
     },
