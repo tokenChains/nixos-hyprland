@@ -17,5 +17,4 @@
     };
   };
   programs.virt-manager.enable = true;
-  console.keyMap = "de";
 }
