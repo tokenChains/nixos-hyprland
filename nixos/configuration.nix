@@ -3,12 +3,17 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./fonts.nix
+      ./apps.nix
+      ./virtualization.nix
+      ./localization_en-de.nix
     ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Booloader
   boot = {
@@ -22,35 +27,10 @@
 #     extraModulePackages = [ config.boot.kernelPackages.nvidia ];
   };
 
-  networking.hostName = "kikos-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "kikos-nixos";
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  console.keyMap = "de";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -72,18 +52,13 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kiko = {
     isNormalUser = true;
     description = "Alexander Kiko";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd"];
+    # packages = with pkgs; [
+    # ];
   };
 
 
@@ -183,112 +158,22 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    kitty
-    polkit_gnome
-    libva-utils
-    fuseiso
-    udiskie
-    gnome.adwaita-icon-theme
-    gnome.gnome-themes-extra
-    nvidia-vaapi-driver
-    gsettings-desktop-schemas
-    swaynotificationcenter
-    wlr-randr
-    ydotool
-    wl-clipboard
-    hyprland-protocols
-    hyprpicker
-    xdg-desktop-portal-hyprland
-    hyprpaper
-    wofi
-    firefox-wayland
-    swww
-    grim
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    qt5.qtwayland
-    qt6.qmake
-    qt6.qtwayland
-    adwaita-qt
-    adwaita-qt6
-    ffmpegthumbnailer
-
-    # term
-    kitty
-
-    # display stuff
-    sddm
-    rofi
-    dunst
-    waybar
-    swaybg
-    swayidle    
-    swaylock-effects
-    wlogout
-
-    # theme
-    papirus-icon-theme
-    nordic
-    nwg-look
-
-    # dev    
-    gh
-    git
-    vscode
-    vscode-with-extensions
-    (python3.withPackages(ps: with ps; [ pip requests]))
-    
-
-    # misc 
-    neofetch
-    discord
-    spotify
-
-    # utility
-    killall
-
-    # sound
-    pulseaudio
-    pamixer
-    pavucontrol
-
-    # browser
-    google-chrome
-    
-    # virt stuff
-    virt-manager
-    looking-glass-client
-  ];
-
-  fonts.packages = with pkgs; [
-    nerdfonts
-    fira-code
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    corefonts
-    ubuntu_font_family
-    powerline-fonts
-    font-awesome
-    source-code-pro
-  ];
-
-  # virtualization
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      ovmf.enable = true;
-      runAsRoot = false;
-    };
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-  };
-
   # let that boi play
   programs.steam = {
     enable = true;
+  };
+
+  # dark mode via gtk settings
+  environment.etc = {
+    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
+    "xdg/gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-error-bell=false
+    '';
+    "xdg/gtk-4.0/settings.ini".text = ''
+      [Settings]
+      gtk-error-bell=false
+    '';
   };
 
   environment.sessionVariables = {
@@ -318,5 +203,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-}
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
+} 
