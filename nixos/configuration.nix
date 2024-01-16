@@ -86,6 +86,10 @@
 
   # Hardware
   hardware = {
+    logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
     opengl = {
       enable = true;
       driSupport = true;
