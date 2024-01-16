@@ -7,4 +7,5 @@ configuration {
   display-window: "﩯 ";
   display-combi: "  ";
 }
-@theme "themes/nord.rasi"
+//@theme "themes/nord.rasi"
+@theme "/home/kiko/.config/rofi/themes/catppuccin-mocha.rasi"
