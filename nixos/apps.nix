@@ -44,8 +44,12 @@ environment.systemPackages = with pkgs; [
     spotify
     gojq
 
+    # gaming
+    lutris
+
     # utility
     killall
+    lsd  # nicer ls
 
     # sound
     pulseaudio
@@ -58,6 +62,11 @@ environment.systemPackages = with pkgs; [
     # virt stuff
     virt-manager
     looking-glass-client
+
+    # wine-staging (version with experimental features)
+    wineWowPackages.staging
+    winetricks
+    wineWowPackages.waylandFull
 
     # unsorted
     polkit_gnome

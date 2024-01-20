@@ -7,10 +7,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
-      ./luks-btrfs.nix
-      ./fonts.nix
       ./apps.nix
+
+      #"${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+      #./luks-btrfs.nix
+      ./fonts.nix
       ./virtualization.nix
       ./localization_en-de.nix
     ];

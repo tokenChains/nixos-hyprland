@@ -15,6 +15,9 @@
       enable = true;
       setSocketVariable = true;
     };
+    enableNvidia = true;
+    enableOnBoot = true;
   };
+  systemd.enableUnifiedCgroupHierarchy = false;
   programs.virt-manager.enable = true;
 }
