@@ -3,10 +3,10 @@
 environment.systemPackages = with pkgs; [
     # term/bash stuff
     kitty
-    starship
     bat
     autojump
-
+    zsh
+    
     # display stuff
     sddm
     rofi
@@ -43,13 +43,24 @@ environment.systemPackages = with pkgs; [
     discord
     spotify
     gojq
+    bc
+    btop
+    zoxide
 
     # gaming
     lutris
-
+    gamescope
+    teamspeak_client
+    teamspeak5_client
+    
     # utility
     killall
     lsd  # nicer ls
+    pciutils
+
+    # video
+    vlc
+    kdenlive
 
     # sound
     pulseaudio
@@ -97,5 +108,6 @@ environment.systemPackages = with pkgs; [
     adwaita-qt6
     ffmpegthumbnailer
   ];
+programs.starship.enable = true;
   }
   

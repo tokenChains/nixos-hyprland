@@ -26,8 +26,18 @@
     };
     initrd = {
       kernelModules = [ "nvidia" ];
+      availableKernelModules = ["vfio-pci"];
+      preDeviceCommands = ''
+        DEVS="0000:09:00.0 0000:09:00.1"
+        for DEV in $DEVS; do
+          echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+        done
+        modprobe -i vfio-pci
+      '';
     };
-#     extraModulePackages = [ config.boot.kernelPackages.nvidia ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [ "amd_iommu=on" "pcie_aspm=off" ];
+    kernelModules = [ "kvm-amd" ];
   };
 
   networking.hostName = "kikos-nixos";
@@ -135,6 +145,7 @@
       sushi.enable = true;
       gnome-keyring.enable = true;
     };
+    openssh.enable = true;
   };
 
   programs = {
@@ -202,6 +213,7 @@
     GTK_USE_PORTAL = "1";
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
   }; 
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
