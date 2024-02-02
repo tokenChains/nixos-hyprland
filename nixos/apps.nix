@@ -46,6 +46,7 @@ environment.systemPackages = with pkgs; [
     bc
     btop
     zoxide
+    sway-contrib.grimshot
 
     # gaming
     lutris
@@ -57,6 +58,8 @@ environment.systemPackages = with pkgs; [
     killall
     lsd  # nicer ls
     pciutils
+    playerctl
+    wev
 
     # video
     vlc
