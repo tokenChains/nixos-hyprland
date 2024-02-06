@@ -118,7 +118,7 @@
   services = {
     xserver = {
       enable = true;
-      layout = "de";
+      layout = "en";
       xkbVariant = "";
       excludePackages = [ pkgs.xterm ];
       # videoDrivers = ["nvidia"];
