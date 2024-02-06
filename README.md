@@ -1,17 +1,4 @@
-# disko - Declarative disk partitioning
-
-<img src="./logo.jpeg" title="" alt="Project logo" width="247">
-
-[Documentation Index](./INDEX.md)
-
-## Quickstart Guide
-
-This tutorial describes how to install NixOS on a single disk system using
-`disko`. You will also need to refer to the NixOS manual, which is available
-[here.](https://nixos.org/manual/nixos/stable/index.html#ex-config)
-
-Please note that `disko` will reformat the entire disk and overwrite any
-existing partitions. Dual booting with other operating systems is not supported.
+# Quicksetup Guide 
 
 ### Step 1: Choose a Disk Configuration
 
@@ -34,6 +21,8 @@ browser. It will look something like this:
 ```
 https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix
 ```
+
+or use the config in [luks-btrfs.nix](./nixos/luks-btrfs.nix)
 
 ### Step 2: Boot the installer
 
