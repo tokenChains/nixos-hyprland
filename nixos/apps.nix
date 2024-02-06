@@ -16,6 +16,7 @@ environment.systemPackages = with pkgs; [
     swayidle    
     swaylock-effects
     wlogout
+    nwg-displays
 
     # theme
     papirus-icon-theme
@@ -35,8 +36,11 @@ environment.systemPackages = with pkgs; [
       ];
     })
     go
+    rustc
+    cargo
     docker-compose
     neovim
+    ansible
 
     # misc 
     neofetch
@@ -47,12 +51,18 @@ environment.systemPackages = with pkgs; [
     btop
     zoxide
     sway-contrib.grimshot
+    lolcat
+    cowsay
+    cmatrix
+    lswt
+    inkscape
+    gimp
 
     # gaming
-    lutris
-    gamescope
-    teamspeak_client
-    teamspeak5_client
+    # lutris
+    # gamescope
+    # teamspeak_client
+    # teamspeak5_client
     
     # utility
     killall
@@ -60,6 +70,12 @@ environment.systemPackages = with pkgs; [
     pciutils
     playerctl
     wev
+    nettools
+    dnsutils
+    lswt
+    nmap
+    util-linux
+    
 
     # video
     vlc
@@ -72,15 +88,17 @@ environment.systemPackages = with pkgs; [
 
     # browser
     google-chrome
+    brave
+    
     
     # virt stuff
     virt-manager
     looking-glass-client
 
     # wine-staging (version with experimental features)
-    wineWowPackages.staging
-    winetricks
-    wineWowPackages.waylandFull
+    # wineWowPackages.staging
+    # winetricks
+    # wineWowPackages.waylandFull
 
     # unsorted
     polkit_gnome
@@ -89,7 +107,8 @@ environment.systemPackages = with pkgs; [
     udiskie
     gnome.adwaita-icon-theme
     gnome.gnome-themes-extra
-    nvidia-vaapi-driver
+    # nvidia-vaapi-driver
+    intel-vaapi-driver
     gsettings-desktop-schemas
     swaynotificationcenter
     wlr-randr
@@ -110,6 +129,7 @@ environment.systemPackages = with pkgs; [
     adwaita-qt
     adwaita-qt6
     ffmpegthumbnailer
+    ffmpeg
   ];
 programs.starship.enable = true;
   }
