@@ -13,7 +13,7 @@
       #./luks-btrfs.nix
       ./fonts.nix
       ./virtualization.nix
-      ./localization_en-de.nix
+      ./localization_en-au.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -24,13 +24,13 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd = {
-      kernelModules = [ "nvidia" ];
-    };
+    # initrd = {
+    #  kernelModules = [ "nvidia" ];
+    # };
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  networking.hostName = "kikos-nixos";
+  networking.hostName = "loki-nixos";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -56,7 +56,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kiko = {
+  users.users.loki = {
     isNormalUser = true;
     description = "Alexander Kiko";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd"];
@@ -104,14 +104,14 @@
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
       setLdLibraryPath = true;
     };
-    nvidia = {
-      modesetting.enable = true;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-      forceFullCompositionPipeline = true;
-      powerManagement.enable = true;
-    };
+    # nvidia = {
+    #   modesetting.enable = true;
+    #   open = false;
+    #   nvidiaSettings = true;
+    #   package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    #   forceFullCompositionPipeline = true;
+    #   powerManagement.enable = true;
+    # };
   };
 
   # Services
@@ -121,7 +121,7 @@
       layout = "de";
       xkbVariant = "";
       excludePackages = [ pkgs.xterm ];
-      videoDrivers = ["nvidia"];
+      # videoDrivers = ["nvidia"];
       libinput.enable = true;
       displayManager.gdm = {
         enable = true;
@@ -187,9 +187,9 @@
   environment.sessionVariables = {
     POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    LIBVA_DRIVER_NAME = "nvidia";
+    # LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
+    # GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
