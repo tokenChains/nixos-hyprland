@@ -12,6 +12,7 @@
     powerline-fonts
     font-awesome
     source-code-pro
+    hack-font
   ];
   }
   
